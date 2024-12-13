@@ -1,7 +1,14 @@
 class Track {
     constructor(center, radius) {
-        this.center = center;
-        this.radius = radius;
+        this.center = center
+        this.radius = radius
+    }
+
+    getPosition(offset) {
+        return {
+            x: this.center.x + Math.cos(offset) * this.radius,
+            y: this.center.y - Math.sin(offset) * this.radius
+        }
     }
 
     draw(ctx) {
