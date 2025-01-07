@@ -21,6 +21,16 @@
             const track = new Track(trackCenter, trackRadius)
             const ball = new Ball(track, ballRadius, ballSpeed)
 
+            animate()
+
+            function animate() {
+                ctx.clearRect(0, 0, size, size)
+                track.draw(ctx)
+                ball.move()
+                ball.draw(ctx)
+                requestAnimationFrame(animate)
+            }
+
             track.draw(ctx)
             ball.draw(ctx)
         </script>
