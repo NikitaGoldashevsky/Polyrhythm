@@ -13,4 +13,9 @@ class Ball{
         ctx.strokeStyle = "white"
         ctx.stroke()
     }
+
+    move() {
+        this.offset += this.speed
+        this.center = this.track.getPosition(this.offset)
+    }
 }
