@@ -7,7 +7,7 @@ function playSound(frequency = 440, duration = 1) {
     envelope.connect(audioCtx.destination)
 
     envelope.gain.setValueAtTime(0, audioCtx.currentTime)
-    envelope.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.05)
+    envelope.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.05)
     envelope.gain.linearRampToValueAtTime(0, audioCtx.currentTime + duration)
 
     osc.frequency.setValueAtTime(frequency, audioCtx.currentTime)
