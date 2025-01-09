@@ -2,12 +2,14 @@ class Track {
     constructor(center, radius) {
         this.center = center
         this.radius = radius
+        this.period = Math.PI
     }
 
     getPosition(offset) {
         return {
             x: this.center.x + Math.cos(offset * 1) * this.radius,
-            y: this.center.y - Math.sin(offset * 1) * this.radius
+            y: this.center.y - Math.abs(Math.sin(offset * 1)) * this.radius,
+            round: Math.floor(offset / this.period)
         }
     }
 

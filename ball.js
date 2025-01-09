@@ -4,8 +4,8 @@ class Ball{
         this.radius = radius
         this.speed = speed
         this.offset = 0
-        this.direction = 1
         this.center = this.track.getPosition(this.offset)
+        this.round = 0
         this.soundFreq = soundFreq
     }
 
@@ -17,11 +17,12 @@ class Ball{
     }
  
     move() {
-        this.offset += this.speed * this.direction
-        this.center = this.track.getPosition(this.offset)
-        if (this.center.y > this.track.center.y) {
-            this.direction *= -1
+        this.offset += this.speed
+        const res = this.track.getPosition(this.offset)
+        this.center = { x: res.x, y: res.y }
+        if (res.round != this.round) {
             playSound(this.soundFreq)
+            this.round = res.round
         }
     }
 }
