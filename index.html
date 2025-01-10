@@ -33,12 +33,15 @@
             for (let i = 0; i < N; i++) {
                 const trackRadius = trackMinRadius + i * trackStep
                 const ballSpeed = ballMinSpeed + i * ballSpeedStep
-                const ballSoundFreq = soundFrequencies[i]                
-                const hue = (i * 360) / N
-                // const hue = (i * 360) / N / 2.5 + 210
+                const ballSoundFreq = soundFrequencies[i]
+
+                const baseHue = (i * 360) / N
+                // const otherHue = (i * 360) / N / 2.5 + 215
+                const trackHue = baseHue
+                const ballHue = baseHue
                 
-                const track = new Track(trackCenter, trackRadius, hue)
-                const ball = new Ball(track, ballRadius, ballSpeed, ballSoundFreq, hue)
+                const track = new Track(trackCenter, trackRadius, trackHue)
+                const ball = new Ball(track, ballRadius, ballSpeed, ballSoundFreq, trackHue)
 
                 tracks.push(track)
                 balls.push(ball)
