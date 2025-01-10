@@ -13,6 +13,7 @@ class Ball{
     draw(ctx) {
         ctx.beginPath()
         ctx.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2)
+        ctx.lineWidth = 2
         ctx.strokeStyle = "white"
         ctx.fillStyle = `hsl(${this.hue}, 100%, 50%)`
         ctx.fill()
