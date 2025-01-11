@@ -1,9 +1,9 @@
 class Ball{
-    constructor(track, radius, speed, soundFreq, hue) {
+    constructor(track, radius, soundFreq, hue) {
         this.track = track
         this.radius = radius
-        this.speed = speed
         this.offset = 0
+        this.speed = 0
         this.center = this.track.getPosition(this.offset)
         this.round = 0
         this.progress = 0

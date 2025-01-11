@@ -2,6 +2,9 @@ const size = window.screen.width
 myCanvas.width = size
 myCanvas.height = size / 2
 
+const speedSlider = document.getElementById('speedSlider')
+speedSlider.addEventListener("input", updateSpeed);
+
 const trackCenter = {x: size / 2, y: size / 2}
 const trackMinRadius = 50
 const trackStep = 15
@@ -21,7 +24,6 @@ const N = 20
 
 for (let i = 0; i < N; i++) {
     const trackRadius = trackMinRadius + i * trackStep
-    const ballSpeed = ballMinSpeed + i * ballSpeedStep
     const ballSoundFreq = soundFrequencies[i]
 
     const baseHue = (i * 360) / N
@@ -30,11 +32,12 @@ for (let i = 0; i < N; i++) {
     const ballHue = baseHue
     
     const track = new Track(trackCenter, trackRadius, trackHue)
-    const ball = new Ball(track, ballRadius, ballSpeed, ballSoundFreq, trackHue)
+    const ball = new Ball(track, ballRadius, ballSoundFreq, ballHue)
 
     tracks.push(track)
     balls.push(ball)
 }
+updateSpeed()
 
 const ctx = myCanvas.getContext("2d")
 
@@ -52,4 +55,14 @@ function animate() {
     })
     
     requestAnimationFrame(animate)
+}
+
+function updateSpeed() {
+    const sliderVal = speedSlider.value / 10
+    const speedFactor = Math.pow(sliderVal, 3)  * 27/1000
+
+    for (let i = 0; i < N; i++) {
+        const ballSpeed = (ballMinSpeed + i * ballSpeedStep) * speedFactor
+        balls.at(i).setSpeed(ballSpeed)
+    }
 }
