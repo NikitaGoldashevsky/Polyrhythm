@@ -1,14 +1,16 @@
-const size = window.screen.width
-myCanvas.width = size
-myCanvas.height = size / 2
+const screenWidth = window.screen.width
+const screenHeight = window.screen.height
+myCanvas.width = screenWidth
+myCanvas.height = screenHeight
+const sizeFactor = 2
 
 const speedSlider = document.getElementById('speedSlider')
 speedSlider.addEventListener("input", updateSpeed);
 
-const trackCenter = {x: size / 2, y: size / 2}
-const trackMinRadius = 50
-const trackStep = 15
-const ballRadius = 7
+const trackCenter = {x: screenWidth / 2, y: screenHeight}
+const trackMinRadius = 50 * sizeFactor
+const trackStep = 15 * sizeFactor
+const ballRadius = 7 * sizeFactor
 const ballMinSpeed = 0.01
 const ballSpeedStep = -0.0001
 
@@ -44,7 +46,7 @@ const ctx = myCanvas.getContext("2d")
 animate()
 
 function animate() {
-    ctx.clearRect(0, 0, size, size)
+    ctx.clearRect(0, 0, screenWidth, screenHeight)
 
     tracks.forEach((track) => {
         track.draw(ctx)
@@ -59,7 +61,12 @@ function animate() {
 
 function updateSpeed() {
     const sliderVal = speedSlider.value / 10
-    const speedFactor = Math.pow(sliderVal, 3)  * 27/1000
+    speedFactor = (Math.pow(sliderVal, 3) + sliderVal) * 25/1000
+    
+    // console.log(`
+    //      updated speedFactor = ${speedFactor}
+    //      sliderVal = ${sliderVal}
+    // `)
 
     for (let i = 0; i < N; i++) {
         const ballSpeed = (ballMinSpeed + i * ballSpeedStep) * speedFactor
