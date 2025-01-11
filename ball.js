@@ -34,4 +34,8 @@ class Ball{
             this.round = res.round
         }
     }
+
+    setSpeed(speed) {
+        this.speed = speed
+    }
 }
